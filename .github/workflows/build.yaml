@@ -1,0 +1,31 @@
+# A simple script to verify build of PRs works
+name: Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: "Build and execute unit tests"
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2.3.3
+
+    - name: Set JDK environment
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: 11
+
+    - name: Build the app and execute unit tests
+      uses: eskatos/gradle-command-action@v1.3.3
+      with:
+        wrapper-cache-enabled: true
+        dependencies-cache-enabled: true
+        configuration-cache-enabled: true
+        arguments: build

@@ -1,0 +1,116 @@
+scalar DateTime
+
+input updateDeviceInput {
+  newDeviceName: String!
+}
+
+input deviceInput {
+  device: String
+}
+
+type Mutation {
+  updateDeviceName(input: updateDeviceInput): Status!
+  logoutDevice(input: deviceInput): Status!
+  addShoppingList(input: addShoppingListInput): ShoppingList
+  renameShoppingList(input: renameShoppingListInput): Status!
+  deleteShoppingList(input: deleteShoppingListInput): Status!
+  shareShoppingList(input: shareShoppingListInput): Status!
+  removeShare(input: shareShoppingListInput): Status!
+  addShoppingListItem(input: addShoppingListItemInput): ShoppingListItem
+  updateShoppingListItem(input: updateShoppingListItemInput): Status!
+  deleteShoppingListItem(input: finalizeShoppingListItemInput): Status!
+  markShoppingListItemBought(input: boughtShoppingListItemInput): Status!
+  register(input: userInput): Status!
+  login(input: userInput): LoginResult!
+  logout: Status!
+  updateUser(input: updateUserInput): Status!
+}
+
+input addShoppingListInput {
+  name: String!
+}
+
+input renameShoppingListInput {
+  id: ID!
+  name: String!
+}
+
+input deleteShoppingListInput {
+  id: ID!
+}
+
+input shareShoppingListInput {
+  shoppingListId: ID!
+  userId: ID!
+}
+
+input addShoppingListItemInput {
+  shoppingListId: ID!
+  value: String!
+}
+
+input updateShoppingListItemInput {
+  shoppingListItemId: ID!
+  value: String!
+}
+
+input finalizeShoppingListItemInput {
+  shoppingListItemId: ID!
+}
+
+input boughtShoppingListItemInput {
+  shoppingListItemId: ID!
+  bought: Boolean
+}
+
+type LoginResult {
+  token: String
+  failureMessage: String
+}
+
+input userInput {
+  username: String!
+  password: String!
+}
+
+input updateUserInput {
+  username: String!
+  password: String
+}
+
+type Query {
+  devices: [Device]
+  shoppingLists: [ShoppingList]
+  user(id: ID): User
+  users: [User]
+}
+
+type Device {
+  name: String!
+  loggedin: Boolean!
+  firstSeen: DateTime!
+  lastSeen: DateTime!
+}
+
+type ShoppingList {
+  id: ID!
+  owner: ID!
+  name: String!
+  listItems: [ShoppingListItem]
+}
+
+type ShoppingListItem {
+  id: ID!
+  value: String!
+  bought: Boolean!
+}
+
+type Status {
+  success: Boolean!
+  failureMessage: String
+}
+
+type User {
+  id: ID!
+  username: String!
+}
