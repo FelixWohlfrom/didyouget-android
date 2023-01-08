@@ -1,0 +1,6 @@
+mutation Login($userInput: userInput!) {
+    login (input: $userInput) {
+        token
+        failureMessage
+    }
+}
