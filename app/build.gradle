@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.apollographql.apollo3' version '3.7.3'
+    id 'com.apollographql.apollo3' version '3.7.4'
 }
 
 android {
@@ -51,7 +51,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha04'
     implementation 'com.google.android.material:material:1.7.0'
-    implementation 'com.apollographql.apollo3:apollo-runtime:3.7.3'
+    implementation 'com.apollographql.apollo3:apollo-runtime:3.7.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
     testImplementation 'junit:junit:4.13.2'
