@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/launcherFragment">
+
+    <fragment
+        android:id="@+id/shoppingListFragment"
+        android:name="de.wohlfrom.didyouget.ui.shoppingList.ShoppingListFragment"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/showShoppingListItem"
+            app:destination="@id/shoppingListItemFragment" />
+        <action
+            android:id="@+id/backToLogin"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/launcherFragment"
+        android:name="de.wohlfrom.didyouget.ui.launcher.LauncherFragment"
+        android:label="fragment_launcher"
+        tools:layout="@layout/fragment_launcher">
+        <action
+            android:id="@+id/showLogin"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/showShoppingList_alreadyLoggedin"
+            app:destination="@id/shoppingListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="de.wohlfrom.didyouget.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/showShoppingList_afterLogin"
+            app:destination="@id/shoppingListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoppingListItemFragment"
+        android:name="de.wohlfrom.didyouget.ui.shoppingListItem.ShoppingListItemFragment"
+        android:label="fragment_item_list"
+        tools:layout="@layout/fragment_item_list">
+        <action
+            android:id="@+id/backToLogin_fromShoppingListItem"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/backToShoppingListItem"
+            app:destination="@id/shoppingListFragment" />
+    </fragment>
+</navigation>

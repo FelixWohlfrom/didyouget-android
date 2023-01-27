@@ -2,8 +2,8 @@ package de.wohlfrom.didyouget.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import de.wohlfrom.didyouget.data.LoginDataSource
 import de.wohlfrom.didyouget.data.LoginRepository
+import de.wohlfrom.didyouget.data.sources.LoginDataSource
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
