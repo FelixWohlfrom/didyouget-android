@@ -1,6 +1,5 @@
 package de.wohlfrom.didyouget.ui.login
 
-import android.content.Context
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -30,8 +29,8 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
             if (result is Result.Success) {
                 _loginResult.value =
                     LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-            } else {
-                _loginResult.value = LoginResult(error = R.string.login_failed)
+            } else if (result is Result.Error) {
+                _loginResult.value = LoginResult(error = result.exception.message)
             }
         }
     }

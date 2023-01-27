@@ -5,5 +5,6 @@ package de.wohlfrom.didyouget.data.model
  */
 data class LoggedInUser(
     val displayName: String,
+    val password: String,
     val token: String
 )

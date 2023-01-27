@@ -1,7 +1,7 @@
 package de.wohlfrom.didyouget.data
 
-import android.content.Context
 import de.wohlfrom.didyouget.data.model.LoggedInUser
+import de.wohlfrom.didyouget.data.sources.LoginDataSource
 
 /**
  * Class that requests authentication and user information from the remote data source and
