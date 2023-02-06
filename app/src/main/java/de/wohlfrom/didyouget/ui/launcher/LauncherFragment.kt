@@ -11,9 +11,6 @@ import de.wohlfrom.didyouget.R
 import de.wohlfrom.didyouget.databinding.FragmentLauncherBinding
 
 class LauncherFragment : Fragment() {
-    companion object {
-        fun newInstance() = LauncherFragment()
-    }
 
     private lateinit var viewModel: LauncherViewModel
     private lateinit var binding: FragmentLauncherBinding
@@ -21,7 +18,6 @@ class LauncherFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[LauncherViewModel::class.java]
-        // TODO: Use the ViewModel
     }
 
     override fun onCreateView(

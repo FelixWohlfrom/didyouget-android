@@ -16,4 +16,7 @@
     <string name="login_failed">Login failed. Message from server: %1$s</string>
     <string name="invalid_server_url">Please provide a valid url.</string>
     <string name="cant_connect_to_server_url">Can\'t connect to backend server. Please check url.</string>
+
+    <!-- Strings related to shopping list view -->
+    <string name="edit_list">Edit list</string>
 </resources>

@@ -1,0 +1,6 @@
+query ShoppingLists {
+    shoppingLists {
+        id
+        name
+    }
+}

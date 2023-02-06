@@ -1,4 +1,4 @@
-package de.wohlfrom.didyouget.data
+package de.wohlfrom.didyouget.data.sources
 
 /**
  * A generic class that holds a value with its loading status.

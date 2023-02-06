@@ -2,6 +2,7 @@ package de.wohlfrom.didyouget.data
 
 import de.wohlfrom.didyouget.data.model.LoggedInUser
 import de.wohlfrom.didyouget.data.sources.LoginDataSource
+import de.wohlfrom.didyouget.data.sources.Result
 
 /**
  * Class that requests authentication and user information from the remote data source and

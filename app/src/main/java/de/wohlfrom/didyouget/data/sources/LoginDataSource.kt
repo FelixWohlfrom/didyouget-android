@@ -1,8 +1,7 @@
 package de.wohlfrom.didyouget.data.sources
 
-import de.wohlfrom.didyouget.graphql.LoginMutation
-import de.wohlfrom.didyouget.data.Result
 import de.wohlfrom.didyouget.data.model.LoggedInUser
+import de.wohlfrom.didyouget.graphql.LoginMutation
 import de.wohlfrom.didyouget.graphql.type.UserInput
 import java.io.IOException
 
@@ -26,7 +25,9 @@ class LoginDataSource {
             if (token == null || response.hasErrors()) {
                 return Result.Error(Exception(response?.data?.login?.failureMessage))
             }
-            return Result.Success(LoggedInUser(username, password, token))
+            val loggedInUser = LoggedInUser(username, password, token)
+            apolloClient(serverUrl, loggedInUser)
+            return Result.Success(loggedInUser)
         } catch (e: Throwable) {
             return Result.Error(IOException("Error logging in", e))
         }
