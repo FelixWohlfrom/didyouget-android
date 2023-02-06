@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import de.wohlfrom.didyouget.R
 import de.wohlfrom.didyouget.data.LoginRepository
-import de.wohlfrom.didyouget.data.Result
+import de.wohlfrom.didyouget.data.sources.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

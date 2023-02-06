@@ -1,62 +1,69 @@
 package de.wohlfrom.didyouget.ui.shoppingList
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import de.wohlfrom.didyouget.R
-import de.wohlfrom.didyouget.placeholder.PlaceholderContent
+import de.wohlfrom.didyouget.databinding.FragmentListBinding
 
 /**
  * A fragment representing a list of Items.
  */
 class ShoppingListFragment : Fragment() {
 
-    private var columnCount = 1
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
-    }
+    private lateinit var shoppingListViewModel: ShoppingListViewModel
+    private lateinit var binding: FragmentListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_list, container, false)
-
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = ShoppingListAdapter(PlaceholderContent.ITEMS)
-            }
-        }
-        return view
+    ): View {
+        binding = FragmentListBinding.inflate(layoutInflater)
+        return binding.root
     }
 
-    companion object {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
+        shoppingListViewModel =
+            ViewModelProvider(this, ShoppingListViewModelFactory())[ShoppingListViewModel::class.java]
 
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            ShoppingListFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
+        shoppingListViewModel.shoppingListResult.observe(viewLifecycleOwner,
+            Observer { shoppingListResult ->
+                shoppingListResult ?: return@Observer
+                shoppingListResult.error?.let {
+                    showLoadingFailed(it)
+                }
+                shoppingListResult.success?.let {
+                    showShoppingLists(it)
                 }
             }
+        )
+
+        shoppingListViewModel.loadShoppingLists()
+    }
+
+    private fun showShoppingLists(model: ShoppingListView) {
+        for (shoppingList in model.shoppingLists) {
+            Log.i("shoppingList", shoppingList.name)
+        }
+
+        // Set the adapter
+        val view = binding.list
+        with(view) {
+            layoutManager = LinearLayoutManager(context)
+            adapter = ShoppingListAdapter(model.shoppingLists)
+        }
+    }
+
+    private fun showLoadingFailed(errorString: String) {
+        val appContext = context?.applicationContext ?: return
+        Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
     }
 }

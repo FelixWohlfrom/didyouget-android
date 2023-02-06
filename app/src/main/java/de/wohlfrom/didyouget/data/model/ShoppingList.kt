@@ -1,7 +1,7 @@
 package de.wohlfrom.didyouget.data.model
 
 data class ShoppingList(
-    val id: Number,
+    val id: String,
     val name: String,
-    val listItems: List<ListItem>
+    val listItems: List<ListItem>? = null
 )
