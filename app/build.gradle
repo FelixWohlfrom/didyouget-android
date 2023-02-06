@@ -38,7 +38,7 @@ android {
 
 apollo {
     service("service") {
-        packageName.set(android.namespace)
+        packageName.set(android.namespace + '.graphql')
     }
 }
 

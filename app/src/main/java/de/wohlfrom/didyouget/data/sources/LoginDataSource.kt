@@ -1,9 +1,9 @@
 package de.wohlfrom.didyouget.data.sources
 
-import de.wohlfrom.didyouget.LoginMutation
+import de.wohlfrom.didyouget.graphql.LoginMutation
 import de.wohlfrom.didyouget.data.Result
 import de.wohlfrom.didyouget.data.model.LoggedInUser
-import de.wohlfrom.didyouget.type.UserInput
+import de.wohlfrom.didyouget.graphql.type.UserInput
 import java.io.IOException
 
 /**
