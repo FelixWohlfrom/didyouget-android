@@ -9,18 +9,18 @@ import okhttp3.Response
 
 private var instance: ApolloClient? = null
 private var storedServerUrl: String? = null
-private var storedLoggedinUser: LoggedInUser? = null
+private var storedLoggedinToken: String? = null
 
-fun apolloClient(serverUrl: String? = null, user: LoggedInUser? = null): ApolloClient {
+fun apolloClient(serverUrl: String? = null, token: String? = null): ApolloClient {
     if (instance != null &&
         (serverUrl == null ||
-                (serverUrl == storedServerUrl && user == storedLoggedinUser))
+                (serverUrl == storedServerUrl && token == storedLoggedinToken))
     ) {
         return instance!!
     }
 
     val okHttpClient = OkHttpClient.Builder()
-        .addInterceptor(AuthorizationInterceptor(user))
+        .addInterceptor(AuthorizationInterceptor(token))
         .build()
 
     instance = ApolloClient.Builder()
@@ -29,15 +29,15 @@ fun apolloClient(serverUrl: String? = null, user: LoggedInUser? = null): ApolloC
         .build()
 
     storedServerUrl = serverUrl
-    storedLoggedinUser = user
+    storedLoggedinToken = token
 
     return instance!!
 }
 
-private class AuthorizationInterceptor(val user: LoggedInUser? = null) : Interceptor {
+private class AuthorizationInterceptor(val token: String? = null) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request().newBuilder()
-            .addHeader("Authorization", user?.token ?: "")
+            .addHeader("Authorization", token ?: "")
             .build()
 
         return chain.proceed(request)

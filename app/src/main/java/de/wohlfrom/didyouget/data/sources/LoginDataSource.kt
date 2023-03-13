@@ -25,9 +25,8 @@ class LoginDataSource {
             if (token == null || response.hasErrors()) {
                 return Result.Error(Exception(response?.data?.login?.failureMessage))
             }
-            val loggedInUser = LoggedInUser(username, password, token)
-            apolloClient(serverUrl, loggedInUser)
-            return Result.Success(loggedInUser)
+            apolloClient(serverUrl, token)
+            return Result.Success(LoggedInUser(serverUrl, username, token))
         } catch (e: Throwable) {
             return Result.Error(IOException("Error logging in", e))
         }
