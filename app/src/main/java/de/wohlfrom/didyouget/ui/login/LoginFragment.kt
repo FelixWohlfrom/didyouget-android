@@ -38,7 +38,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loginViewModel =
-            ViewModelProvider(this, LoginViewModelFactory())[LoginViewModel::class.java]
+            ViewModelProvider(this, LoginViewModelFactory(requireActivity()))[LoginViewModel::class.java]
 
         val serverUrl = binding.serverUrl
         val username = binding.username
@@ -121,6 +121,8 @@ class LoginFragment : Fragment() {
                 password.text.toString()
             )
         }
+
+        loginViewModel.checkLogin()
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {

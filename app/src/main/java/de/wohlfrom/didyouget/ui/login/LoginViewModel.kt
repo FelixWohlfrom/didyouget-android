@@ -22,13 +22,22 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
+    fun checkLogin() {
+        if (loginRepository.isLoggedIn) {
+            _loginResult.value =
+                LoginResult(success =
+                    LoggedInUserView(displayName = loginRepository.user!!.username)
+                )
+        }
+    }
+
     fun login(serverUrl: String, username: String, password: String) {
         viewModelScope.launch {
             val result = loginRepository.login(serverUrl, username, password)
 
             if (result is Result.Success) {
                 _loginResult.value =
-                    LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
+                    LoginResult(success = LoggedInUserView(displayName = result.data.username))
             } else if (result is Result.Error) {
                 _loginResult.value = LoginResult(error = result.exception.message)
             }
