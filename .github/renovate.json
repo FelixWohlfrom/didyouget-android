@@ -5,12 +5,6 @@
   ],
   "packageRules": [
     {
-      "matchDatasources": [
-        "*"
-      ],
-      "matchPackagePatterns": [
-        "*"
-      ],
       "matchUpdateTypes": [
         "minor",
         "patch"
