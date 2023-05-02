@@ -1,7 +1,6 @@
 package de.wohlfrom.didyouget.ui.login
 
 import android.app.Activity
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import de.wohlfrom.didyouget.data.LoginRepository

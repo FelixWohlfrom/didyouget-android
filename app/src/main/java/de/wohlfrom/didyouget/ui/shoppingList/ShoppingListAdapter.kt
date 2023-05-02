@@ -6,11 +6,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import de.wohlfrom.didyouget.data.model.ShoppingList
 import de.wohlfrom.didyouget.databinding.FragmentListItemBinding
-import de.wohlfrom.didyouget.placeholder.PlaceholderContent.PlaceholderItem
 
 /**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
+ * [RecyclerView.Adapter] that can display a [ShoppingList].
  */
 class ShoppingListAdapter(
     private val values: List<ShoppingList>
