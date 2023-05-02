@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">DidYouGet?</string>
+    <string name="app_name" translatable="false">DidYouGet?</string>
 
     <!-- Strings related to launcher -->
-    <string name="launcher">Launcher</string>
+    <string name="launcher" translatable="false">Launcher</string>
 
     <!-- Strings related to login -->
     <string name="header_login">DidYouGet? Login</string>
@@ -19,4 +19,11 @@
 
     <!-- Strings related to shopping list view -->
     <string name="edit_list">Edit list</string>
+    <string name="add_new_list">Add new list</string>
+    <string name="delete_list">Delete list</string>
+
+    <!-- Strings related to shopping list item view -->
+    <string name="edit_list_item">Edit list item</string>
+    <string name="add_new_list_item">Add new list item</string>
+    <string name="delete_list_item">Delete list item</string>
 </resources>

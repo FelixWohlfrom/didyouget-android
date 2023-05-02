@@ -2,7 +2,6 @@ package de.wohlfrom.didyouget.data.sources
 
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.network.okHttpClient
-import de.wohlfrom.didyouget.data.model.LoggedInUser
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
