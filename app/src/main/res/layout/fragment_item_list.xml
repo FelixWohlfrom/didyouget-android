@@ -6,7 +6,7 @@
     android:name="de.wohlfrom.didyouget.ShoppingListItemFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.shoppingListItem.ShoppingListItemFragment">
+    tools:context=".ui.shoppingListItem.ListItemFragment">
 
     <ImageButton
         android:id="@+id/add_list_item"

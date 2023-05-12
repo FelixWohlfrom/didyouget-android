@@ -3,6 +3,7 @@ package de.wohlfrom.didyouget.ui.shoppingList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import de.wohlfrom.didyouget.data.model.ShoppingList
 import de.wohlfrom.didyouget.databinding.FragmentListItemBinding
@@ -15,7 +16,6 @@ class ShoppingListAdapter(
 ) : RecyclerView.Adapter<ShoppingListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         return ViewHolder(
             FragmentListItemBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -29,6 +29,11 @@ class ShoppingListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
         holder.listName.text = item.name
+
+        holder.listName.setOnClickListener {
+            it.findNavController().navigate(
+                ShoppingListFragmentDirections.showShoppingListItem(item.id))
+        }
     }
 
     override fun getItemCount(): Int = values.size
