@@ -1,6 +1,7 @@
 package de.wohlfrom.didyouget.data.sources
 
 import android.util.Log
+import de.wohlfrom.didyouget.data.model.ListItem
 import de.wohlfrom.didyouget.data.model.ShoppingList
 import de.wohlfrom.didyouget.graphql.ShoppingListsQuery
 import java.io.IOException
@@ -8,7 +9,7 @@ import java.util.LinkedList
 
 class ShoppingListDataSource {
 
-    suspend fun loadShoppingList(): Result<List<ShoppingList>> {
+    suspend fun loadShoppingLists(): Result<List<ShoppingList>> {
         try {
             val response = try {
                 apolloClient().query(ShoppingListsQuery()).execute()
@@ -24,7 +25,24 @@ class ShoppingListDataSource {
 
             val shoppingLists = LinkedList<ShoppingList>()
             for (shoppingListData in shoppingListsData) {
-                shoppingLists.add(ShoppingList(shoppingListData!!.id, shoppingListData.name))
+                val shoppingListItems = LinkedList<ListItem>()
+                for (listItem in shoppingListData!!.listItems ?: LinkedList()) {
+                    shoppingListItems.add(
+                        ListItem(
+                            listItem!!.id,
+                            listItem.value,
+                            listItem.bought,
+                        )
+                    )
+                }
+
+                shoppingLists.add(
+                    ShoppingList(
+                        shoppingListData.id,
+                        shoppingListData.name,
+                        shoppingListItems
+                    )
+                )
             }
             return Result.Success(shoppingLists)
         } catch (e: Throwable) {

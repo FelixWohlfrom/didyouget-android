@@ -2,5 +2,10 @@ query ShoppingLists {
     shoppingLists {
         id
         name
+        listItems {
+            id
+            value
+            bought
+        }
     }
 }

@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/shoppingListItemFragment"
-        android:name="de.wohlfrom.didyouget.ui.shoppingListItem.ShoppingListItemFragment"
+        android:name="de.wohlfrom.didyouget.ui.shoppingListItem.ListItemFragment"
         android:label="fragment_item_list"
         tools:layout="@layout/fragment_item_list">
         <action
@@ -49,5 +49,6 @@
         <action
             android:id="@+id/backToShoppingListItem"
             app:destination="@id/shoppingListFragment" />
+        <argument android:name="listId" />
     </fragment>
 </navigation>

@@ -1,4 +1,4 @@
-package de.wohlfrom.didyouget.ui.shoppingList
+package de.wohlfrom.didyouget.ui.shoppingListItem
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,18 +8,21 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.wohlfrom.didyouget.databinding.FragmentListBinding
+import de.wohlfrom.didyouget.ui.shoppingList.ShoppingListViewModel
 
 /**
  * A fragment representing a list of Items.
  */
-class ShoppingListFragment : Fragment() {
+class ListItemFragment : Fragment() {
 
     private val shoppingListViewModel: ShoppingListViewModel by activityViewModels {
         ShoppingListViewModel.Factory
     }
     private lateinit var binding: FragmentListBinding
+    private val args: ListItemFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,32 +35,22 @@ class ShoppingListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        shoppingListViewModel.shoppingListResult.observe(viewLifecycleOwner,
-            Observer { shoppingListResult ->
-                shoppingListResult ?: return@Observer
-                shoppingListResult.error?.let {
-                    showLoadingFailed(it)
-                }
-                shoppingListResult.success?.let {
-                    showShoppingLists(it)
-                }
+        shoppingListViewModel.shoppingListItems.observe(viewLifecycleOwner,
+            Observer { listItems ->
+                listItems ?: return@Observer
+                this.showShoppingListItems(listItems)
             }
         )
 
-        shoppingListViewModel.loadShoppingLists()
+        shoppingListViewModel.loadListItems(args.listId)
     }
 
-    private fun showShoppingLists(model: ShoppingListView) {
+    private fun showShoppingListItems(model: ListItemView) {
         // Set the adapter
         val view = binding.list
         with(view) {
             layoutManager = LinearLayoutManager(context)
-            adapter = ShoppingListAdapter(model.shoppingLists)
+            adapter = ListItemAdapter(model.shoppingListItems)
         }
-    }
-
-    private fun showLoadingFailed(errorString: String) {
-        val appContext = context?.applicationContext ?: return
-        Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
     }
 }

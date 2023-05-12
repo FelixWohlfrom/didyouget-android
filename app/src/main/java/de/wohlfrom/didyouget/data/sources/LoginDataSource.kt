@@ -18,12 +18,12 @@ class LoginDataSource {
                     LoginMutation(UserInput(username, password)))
                     .execute()
             } catch (e: Exception) {
-                null
+                return Result.Error(e)
             }
 
-            val token = response?.data?.login?.token
+            val token = response.data?.login?.token
             if (token == null || response.hasErrors()) {
-                return Result.Error(Exception(response?.data?.login?.failureMessage))
+                return Result.Error(Exception(response.data?.login?.failureMessage))
             }
             apolloClient(serverUrl, token)
             return Result.Success(LoggedInUser(serverUrl, username, token))
