@@ -8,17 +8,17 @@ import java.util.LinkedList
 
 class ShoppingListRepository(val dataSource: ShoppingListDataSource) {
 
-    private lateinit var _shoppingLists: List<ShoppingList>
-    private var _shoppingListsById: Map<String, ShoppingList>? = null
+    private lateinit var _shoppingLists: MutableList<ShoppingList>
+    private var _shoppingListsById: MutableMap<String, ShoppingList>? = null
 
     suspend fun loadShoppingLists(): Result<List<ShoppingList>> {
         val result = dataSource.loadShoppingLists()
 
         if (result is Result.Success) {
-            _shoppingLists = result.data
+            _shoppingLists = result.data.toMutableList()
             _shoppingListsById = HashMap()
             _shoppingLists.forEach {
-                (_shoppingListsById as HashMap<String, ShoppingList>)[it.id] = it
+                _shoppingListsById?.set(it.id, it)
             }
         }
 
@@ -32,4 +32,18 @@ class ShoppingListRepository(val dataSource: ShoppingListDataSource) {
 
         return _shoppingListsById!![itemId]?.listItems ?: LinkedList()
     }
+
+    suspend fun addShoppingList(name: String): Result<Boolean> {
+        val result = dataSource.addShoppingList(name)
+
+        if (result is Result.Success) {
+            _shoppingListsById?.set(result.data.id, result.data)
+            _shoppingLists.add(result.data)
+            return Result.Success(true)
+        } else if (result is Result.Error) {
+            return Result.Error(result.exception)
+        }
+        return Result.Error(Exception("Unknown error"))
+    }
+
 }

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.wohlfrom.didyouget.databinding.FragmentListBinding
 
@@ -43,6 +44,11 @@ class ShoppingListFragment : Fragment() {
                 }
             }
         )
+
+        binding.addList.setOnClickListener {
+            it.findNavController().navigate(
+                ShoppingListFragmentDirections.showShoppingListItemAddEdit(null, null))
+        }
 
         shoppingListViewModel.loadShoppingLists()
     }
