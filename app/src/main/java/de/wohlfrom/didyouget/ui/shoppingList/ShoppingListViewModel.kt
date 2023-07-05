@@ -6,12 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import de.wohlfrom.didyouget.data.ShoppingListRepository
-import de.wohlfrom.didyouget.data.model.ShoppingList
 import de.wohlfrom.didyouget.data.sources.Result
 import de.wohlfrom.didyouget.data.sources.ShoppingListDataSource
+import de.wohlfrom.didyouget.ui.common.SimpleResult
 import de.wohlfrom.didyouget.ui.shoppingListItem.ListItemView
 import kotlinx.coroutines.launch
-import java.util.LinkedList
 
 class ShoppingListViewModel(private val shoppingListRepository: ShoppingListRepository) :
     ViewModel() {
@@ -38,6 +37,18 @@ class ShoppingListViewModel(private val shoppingListRepository: ShoppingListRepo
     fun loadListItems(itemId: String) {
         viewModelScope.launch {
             _shoppingListItems.value = ListItemView(shoppingListRepository.loadListItems(itemId))
+        }
+    }
+
+    fun addList(name: String, onResult: (SimpleResult) -> Unit) {
+        viewModelScope.launch {
+            val result = shoppingListRepository.addShoppingList(name)
+
+            if (result is Result.Success) {
+                onResult(SimpleResult(success = true))
+            } else if (result is Result.Error) {
+                onResult(SimpleResult(error = result.exception.message))
+            }
         }
     }
 

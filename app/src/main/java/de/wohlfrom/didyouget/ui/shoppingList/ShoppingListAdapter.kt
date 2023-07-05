@@ -9,7 +9,7 @@ import de.wohlfrom.didyouget.data.model.ShoppingList
 import de.wohlfrom.didyouget.databinding.FragmentListItemBinding
 
 /**
- * [RecyclerView.Adapter] that can display a [ShoppingList].
+ * [RecyclerView.Adapter] that can display a single [ShoppingList].
  */
 class ShoppingListAdapter(
     private val values: List<ShoppingList>
