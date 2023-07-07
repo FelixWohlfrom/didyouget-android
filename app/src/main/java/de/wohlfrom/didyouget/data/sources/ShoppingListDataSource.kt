@@ -3,9 +3,12 @@ package de.wohlfrom.didyouget.data.sources
 import android.util.Log
 import de.wohlfrom.didyouget.data.model.ListItem
 import de.wohlfrom.didyouget.data.model.ShoppingList
+import de.wohlfrom.didyouget.graphql.AddShoppingListItemMutation
 import de.wohlfrom.didyouget.graphql.AddShoppingListMutation
 import de.wohlfrom.didyouget.graphql.ShoppingListsQuery
 import de.wohlfrom.didyouget.graphql.type.AddShoppingListInput
+import de.wohlfrom.didyouget.graphql.type.AddShoppingListItemInput
+import de.wohlfrom.didyouget.graphql.type.ShoppingListItem
 import java.io.IOException
 import java.util.LinkedList
 
