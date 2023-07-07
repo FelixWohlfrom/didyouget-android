@@ -1,4 +1,4 @@
-package de.wohlfrom.didyouget.ui.shoppingList
+package de.wohlfrom.didyouget.ui.shoppingListItem
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,25 +9,26 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import de.wohlfrom.didyouget.databinding.FragmentAddEditListBinding
+import de.wohlfrom.didyouget.databinding.FragmentAddListItemBinding
 import de.wohlfrom.didyouget.ui.common.SimpleResult
+import de.wohlfrom.didyouget.ui.shoppingList.ShoppingListViewModel
 
 /**
- * A fragment showing an add/edit possibility for a shopping list.
+ * A fragment showing an add/edit possibility for a shopping list item.
  */
-class AddEditListFragment : Fragment() {
+class AddListItemFragment : Fragment() {
 
     private val shoppingListViewModel: ShoppingListViewModel by activityViewModels {
         ShoppingListViewModel.Factory
     }
-    private lateinit var binding: FragmentAddEditListBinding
-    private val args: AddEditListFragmentArgs by navArgs()
+    private lateinit var binding: FragmentAddListItemBinding
+    private val args: AddListItemFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAddEditListBinding.inflate(layoutInflater)
+        binding = FragmentAddListItemBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -36,27 +37,23 @@ class AddEditListFragment : Fragment() {
 
         // Handler for save button click
         binding.saveButton.setOnClickListener {
-            val listName = binding.addEditName.text.toString()
-            if (args.listId == null) {
-                shoppingListViewModel.addList(listName) {
-                    handleResult(it)
-                }
+            val itemName = binding.addName.text.toString()
+            shoppingListViewModel.addListItem(args.listId, itemName) {
+                handleResult(it)
             }
         }
-
-        binding.addEditName.setText(args.listName)
     }
 
     private fun handleResult(result: SimpleResult) {
         result.error?.let {
-            showUpdatingFailed(it)
+            showLoadingFailed(it)
         }
         result.success?.let {
             this.findNavController().popBackStack()
         }
     }
 
-    private fun showUpdatingFailed(errorString: String) {
+    private fun showLoadingFailed(errorString: String) {
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
     }

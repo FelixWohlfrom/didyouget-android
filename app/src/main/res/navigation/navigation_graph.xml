@@ -53,6 +53,9 @@
             android:id="@+id/backToShoppingListItem"
             app:destination="@id/shoppingListFragment" />
         <argument android:name="listId" />
+        <action
+            android:id="@+id/showShoppingListItemAdd"
+            app:destination="@id/addListItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/addEditListFragment"
@@ -66,5 +69,13 @@
             android:name="listName"
             app:argType="string"
             app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/addListItemFragment"
+        android:name="de.wohlfrom.didyouget.ui.shoppingListItem.AddListItemFragment"
+        android:label="fragment_add_list_item"
+        tools:layout="@layout/fragment_add_list_item">
+        <argument android:name="listId"
+            app:argType="string" />
     </fragment>
 </navigation>

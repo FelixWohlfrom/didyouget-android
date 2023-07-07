@@ -1,0 +1,7 @@
+mutation AddShoppingListItem($addShoppingListItemInput: addShoppingListItemInput!) {
+    addShoppingListItem (input: $addShoppingListItemInput) {
+        id
+        value
+        bought
+    }
+}
