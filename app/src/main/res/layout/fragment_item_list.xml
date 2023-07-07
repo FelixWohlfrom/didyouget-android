@@ -13,7 +13,7 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/add_new_list"
+        android:contentDescription="@string/add_new_list_item"
         android:src="@android:drawable/ic_menu_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

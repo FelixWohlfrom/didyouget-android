@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import de.wohlfrom.didyouget.databinding.FragmentListBinding
+import de.wohlfrom.didyouget.databinding.FragmentItemListBinding
 import de.wohlfrom.didyouget.ui.shoppingList.ShoppingListViewModel
 
 /**
@@ -21,14 +21,14 @@ class ListItemFragment : Fragment() {
     private val shoppingListViewModel: ShoppingListViewModel by activityViewModels {
         ShoppingListViewModel.Factory
     }
-    private lateinit var binding: FragmentListBinding
+    private lateinit var binding: FragmentItemListBinding
     private val args: ListItemFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentListBinding.inflate(layoutInflater)
+        binding = FragmentItemListBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -42,12 +42,18 @@ class ListItemFragment : Fragment() {
             }
         )
 
+        binding.addListItem.setOnClickListener {
+            it.findNavController().navigate(
+                ListItemFragmentDirections.showShoppingListItemAdd(args.listId)
+            )
+        }
+
         shoppingListViewModel.loadListItems(args.listId)
     }
 
     private fun showShoppingListItems(model: ListItemView) {
         // Set the adapter
-        val view = binding.list
+        val view = binding.listItem
         with(view) {
             layoutManager = LinearLayoutManager(context)
             adapter = ListItemAdapter(model.shoppingListItems)

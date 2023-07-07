@@ -46,4 +46,15 @@ class ShoppingListRepository(val dataSource: ShoppingListDataSource) {
         return Result.Error(Exception("Unknown error"))
     }
 
+    suspend fun addListItem(listId: String, newName: String): Result<Boolean> {
+        val result = dataSource.addListItem(listId, newName)
+
+        if (result is Result.Success) {
+            _shoppingListsById?.get(listId)!!.listItems!!.add(result.data)
+            return Result.Success(true)
+        } else if (result is Result.Error) {
+            return Result.Error(result.exception)
+        }
+        return Result.Error(Exception("Unknown error"))
+    }
 }
