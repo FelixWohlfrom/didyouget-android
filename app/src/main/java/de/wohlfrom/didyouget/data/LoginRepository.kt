@@ -26,9 +26,6 @@ class LoginRepository(val dataSource: LoginDataSource, activity: Activity) {
     var user: LoggedInUser? = null
         private set
 
-    val isLoggedIn: Boolean
-        get() = user != null
-
     init {
         user = null
         localStore = activity.getPreferences(Context.MODE_PRIVATE)
@@ -54,6 +51,8 @@ class LoginRepository(val dataSource: LoginDataSource, activity: Activity) {
 
         if (result is Result.Success) {
             setLoggedInUser(result.data)
+        } else {
+            logout()
         }
 
         return result
@@ -66,5 +65,17 @@ class LoginRepository(val dataSource: LoginDataSource, activity: Activity) {
             putString(LOGGED_IN_USER_KEY, Gson().toJson(loggedInUser))
             apply()
         }
+    }
+
+    suspend fun checkLoggedIn(): Boolean {
+        if (this.user != null) {
+            val result = dataSource.checkLoggedIn()
+
+            if (result is Result.Success) {
+                return true
+            }
+            user = null
+        }
+        return false
     }
 }

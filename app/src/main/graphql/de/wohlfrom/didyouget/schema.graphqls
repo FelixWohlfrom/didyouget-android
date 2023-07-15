@@ -105,7 +105,20 @@ type Query {
   devices: [Device]
 
   shoppingLists: [ShoppingList]
+
+  """
+  Returns true if the user currently trying to connect is logged in.
+  """
+  isLoggedIn: Status!
+
+  """
+  Returns either the user information for a given user id or the currently logged in user.
+  """
   user(id: ID): User
+
+  """
+  Returns all users in the database.
+  """
   users: [User]
 }
 
