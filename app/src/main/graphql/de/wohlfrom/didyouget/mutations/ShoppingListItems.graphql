@@ -5,3 +5,10 @@ mutation AddShoppingListItem($addShoppingListItemInput: addShoppingListItemInput
         bought
     }
 }
+
+mutation MarkShoppingListItemBought($boughtShoppingListItemInput: boughtShoppingListItemInput!) {
+    markShoppingListItemBought (input: $boughtShoppingListItemInput) {
+        success
+        failureMessage
+    }
+}

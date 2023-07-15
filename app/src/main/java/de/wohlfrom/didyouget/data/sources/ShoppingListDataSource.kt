@@ -1,14 +1,16 @@
 package de.wohlfrom.didyouget.data.sources
 
 import android.util.Log
+import com.apollographql.apollo3.api.Optional
 import de.wohlfrom.didyouget.data.model.ListItem
 import de.wohlfrom.didyouget.data.model.ShoppingList
 import de.wohlfrom.didyouget.graphql.AddShoppingListItemMutation
 import de.wohlfrom.didyouget.graphql.AddShoppingListMutation
+import de.wohlfrom.didyouget.graphql.MarkShoppingListItemBoughtMutation
 import de.wohlfrom.didyouget.graphql.ShoppingListsQuery
 import de.wohlfrom.didyouget.graphql.type.AddShoppingListInput
 import de.wohlfrom.didyouget.graphql.type.AddShoppingListItemInput
-import de.wohlfrom.didyouget.graphql.type.ShoppingListItem
+import de.wohlfrom.didyouget.graphql.type.BoughtShoppingListItemInput
 import java.io.IOException
 import java.util.LinkedList
 
@@ -81,5 +83,29 @@ class ShoppingListDataSource {
             return Result.Error(Exception(response.errors?.get(0)?.message ?: "Unknown error"))
         }
         return Result.Success(ListItem(newItem.id, newItem.value, newItem.bought))
+    }
+
+    suspend fun markListItemBought(listItemId: String, bought: Boolean): Result<Boolean> {
+        val response = try {
+            apolloClient().mutation(
+                MarkShoppingListItemBoughtMutation(
+                    BoughtShoppingListItemInput(listItemId, Optional.present(bought))
+                )
+            ).execute()
+        } catch (e: Exception) {
+            Log.e("addShoppingList", e.toString())
+            return Result.Error(IOException("Error adding shopping list item", e))
+        }
+        val newItem = response.data?.markShoppingListItemBought
+        if (newItem != null) {
+            return if (newItem.success) {
+                Result.Success(true)
+            } else if (!newItem.failureMessage.isNullOrEmpty()) {
+                Result.Error(Exception(newItem.failureMessage))
+            } else {
+                Result.Error(Exception("Unknown error"))
+            }
+        }
+        return Result.Error(Exception(response.errors?.get(0)?.message ?: "Unknown error"))
     }
 }
