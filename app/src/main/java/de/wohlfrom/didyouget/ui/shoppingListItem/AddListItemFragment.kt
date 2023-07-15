@@ -37,8 +37,8 @@ class AddListItemFragment : Fragment() {
 
         // Handler for save button click
         binding.saveButton.setOnClickListener {
-            val itemName = binding.addName.text.toString()
-            shoppingListViewModel.addListItem(args.listId, itemName) {
+            val itemValue = binding.addValue.text.toString()
+            shoppingListViewModel.addListItem(args.listId, itemValue) {
                 handleResult(it)
             }
         }

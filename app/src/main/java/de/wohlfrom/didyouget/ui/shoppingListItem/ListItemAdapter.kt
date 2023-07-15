@@ -3,9 +3,12 @@ package de.wohlfrom.didyouget.ui.shoppingListItem
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageButton
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import de.wohlfrom.didyouget.data.model.ListItem
 import de.wohlfrom.didyouget.databinding.FragmentItemBinding
+import de.wohlfrom.didyouget.ui.shoppingList.ShoppingListFragmentDirections
 import de.wohlfrom.didyouget.ui.shoppingList.ShoppingListViewModel
 
 /**
@@ -36,6 +39,12 @@ class ListItemAdapter(
                 // TODO: Update design, e.g. strike through. Also, handle errors
             }
         }
+
+        holder.editItem.setOnClickListener {
+            it.findNavController().navigate(
+                ListItemFragmentDirections.showShoppingListItemEdit(item.id, item.value,
+                    item.bought))
+        }
     }
 
     override fun getItemCount(): Int = values.size
@@ -43,6 +52,7 @@ class ListItemAdapter(
     inner class ViewHolder(binding: FragmentItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val item: CheckBox = binding.itemName
+        val editItem: ImageButton = binding.editItem
 
         override fun toString(): String {
             return super.toString() + " '" + item.text + "'"

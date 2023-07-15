@@ -6,6 +6,13 @@ mutation AddShoppingListItem($addShoppingListItemInput: addShoppingListItemInput
     }
 }
 
+mutation UpdateShoppingListItem($updateShoppingListItemInput: updateShoppingListItemInput!) {
+    updateShoppingListItem (input: $updateShoppingListItemInput) {
+        success
+        failureMessage
+    }
+}
+
 mutation MarkShoppingListItemBought($boughtShoppingListItemInput: boughtShoppingListItemInput!) {
     markShoppingListItemBought (input: $boughtShoppingListItemInput) {
         success

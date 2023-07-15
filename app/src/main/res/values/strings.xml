@@ -27,4 +27,5 @@
     <string name="edit_list_item">Edit list item</string>
     <string name="add_new_list_item">Add new list item</string>
     <string name="delete_list_item">Delete list item</string>
+    <string name="item_is_already_bought">Item is already bought?</string>
 </resources>

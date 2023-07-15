@@ -2,6 +2,7 @@ package de.wohlfrom.didyouget.ui.shoppingList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +35,11 @@ class ShoppingListAdapter(
             it.findNavController().navigate(
                 ShoppingListFragmentDirections.showShoppingListItem(item.id))
         }
+
+        holder.editList.setOnClickListener {
+            it.findNavController().navigate(
+                ShoppingListFragmentDirections.showShoppingListItemAddEdit(item.id, item.name))
+        }
     }
 
     override fun getItemCount(): Int = values.size
@@ -41,6 +47,7 @@ class ShoppingListAdapter(
     inner class ViewHolder(binding: FragmentListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val listName: TextView = binding.listName
+        val editList: ImageButton = binding.editList
 
         override fun toString(): String {
             return super.toString() + " '" + listName.text + "'"
