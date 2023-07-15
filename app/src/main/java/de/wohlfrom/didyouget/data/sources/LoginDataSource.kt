@@ -1,6 +1,7 @@
 package de.wohlfrom.didyouget.data.sources
 
 import de.wohlfrom.didyouget.data.model.LoggedInUser
+import de.wohlfrom.didyouget.graphql.IsLoggedInQuery
 import de.wohlfrom.didyouget.graphql.LoginMutation
 import de.wohlfrom.didyouget.graphql.type.UserInput
 import java.io.IOException
@@ -22,9 +23,7 @@ class LoginDataSource {
             }
 
             val token = response.data?.login?.token
-            if (token == null || response.hasErrors()) {
-                return Result.Error(Exception(response.data?.login?.failureMessage))
-            }
+                ?: return Result.Error(Exception(response.data?.login?.failureMessage))
             apolloClient(serverUrl, token)
             return Result.Success(LoggedInUser(serverUrl, username, token))
         } catch (e: Throwable) {
@@ -34,5 +33,17 @@ class LoginDataSource {
 
     fun logout() {
         // TODO: revoke authentication
+    }
+
+    suspend fun checkLoggedIn(): Result<Boolean> {
+        val response = apolloClient().query(IsLoggedInQuery()).execute()
+
+        return if (response.data?.isLoggedIn?.success == true) {
+            Result.Success(true);
+        } else if (response.hasErrors()) {
+            Result.Error(Exception(response.errors.toString()))
+        } else {
+            Result.Error(Exception("Unknown error while checking for user logged in"))
+        }
     }
 }

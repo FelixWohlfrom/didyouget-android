@@ -23,11 +23,17 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     val loginResult: LiveData<LoginResult> = _loginResult
 
     fun checkLogin() {
-        if (loginRepository.isLoggedIn) {
-            _loginResult.value =
-                LoginResult(success =
-                    LoggedInUserView(displayName = loginRepository.user!!.username)
-                )
+        viewModelScope.launch {
+            if (loginRepository.checkLoggedIn()) {
+                _loginResult.value =
+                    LoginResult(
+                        success =
+                        LoggedInUserView(displayName = loginRepository.user!!.username)
+                    )
+            } else {
+                _loginResult.value =
+                    LoginResult(error = "Not logged in")
+            }
         }
     }
 
