@@ -52,9 +52,34 @@ class ShoppingListViewModel(private val shoppingListRepository: ShoppingListRepo
         }
     }
 
-    fun addListItem(listId: String, name: String, onResult: (SimpleResult) -> Unit) {
+    fun renameShoppingList(listId: String, newName: String, onResult: (SimpleResult) -> Unit) {
         viewModelScope.launch {
-            val result = shoppingListRepository.addListItem(listId, name)
+            val result = shoppingListRepository.renameShoppingList(listId, newName)
+
+            if (result is Result.Success) {
+                onResult(SimpleResult(success = true))
+            } else if (result is Result.Error) {
+                onResult(SimpleResult(error = result.exception.message))
+            }
+        }
+    }
+
+    fun addListItem(listId: String, value: String, onResult: (SimpleResult) -> Unit) {
+        viewModelScope.launch {
+            val result = shoppingListRepository.addListItem(listId, value)
+
+            if (result is Result.Success) {
+                onResult(SimpleResult(success = true))
+            } else if (result is Result.Error) {
+                onResult(SimpleResult(error = result.exception.message))
+            }
+        }
+    }
+
+    fun updateShoppingListItem(listItemId: String, newValue: String, bought: Boolean,
+                               onResult: (SimpleResult) -> Unit)  {
+        viewModelScope.launch {
+            val result = shoppingListRepository.updateShoppingListItem(listItemId, newValue, bought)
 
             if (result is Result.Success) {
                 onResult(SimpleResult(success = true))

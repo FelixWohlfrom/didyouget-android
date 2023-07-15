@@ -4,3 +4,10 @@ mutation AddShoppingList($addShoppingListInput: addShoppingListInput!) {
         name
     }
 }
+
+mutation RenameShoppingList($renameShoppingListInput: renameShoppingListInput!) {
+    renameShoppingList (input: $renameShoppingListInput) {
+        success
+        failureMessage
+    }
+}
