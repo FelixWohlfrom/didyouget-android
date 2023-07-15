@@ -57,4 +57,16 @@ class ShoppingListRepository(val dataSource: ShoppingListDataSource) {
         }
         return Result.Error(Exception("Unknown error"))
     }
+
+    suspend fun markListItemBought(listItemId: String, bought: Boolean): Result<Boolean> {
+        return when (val result = dataSource.markListItemBought(listItemId, bought)) {
+            is Result.Success -> {
+                Result.Success(true)
+            }
+
+            is Result.Error -> {
+                Result.Error(result.exception)
+            }
+        }
+    }
 }
