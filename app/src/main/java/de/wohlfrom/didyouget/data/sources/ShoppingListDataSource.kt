@@ -6,6 +6,8 @@ import de.wohlfrom.didyouget.data.model.ListItem
 import de.wohlfrom.didyouget.data.model.ShoppingList
 import de.wohlfrom.didyouget.graphql.AddShoppingListItemMutation
 import de.wohlfrom.didyouget.graphql.AddShoppingListMutation
+import de.wohlfrom.didyouget.graphql.DeleteShoppingListItemMutation
+import de.wohlfrom.didyouget.graphql.DeleteShoppingListMutation
 import de.wohlfrom.didyouget.graphql.MarkShoppingListItemBoughtMutation
 import de.wohlfrom.didyouget.graphql.RenameShoppingListMutation
 import de.wohlfrom.didyouget.graphql.ShoppingListsQuery
@@ -13,6 +15,8 @@ import de.wohlfrom.didyouget.graphql.UpdateShoppingListItemMutation
 import de.wohlfrom.didyouget.graphql.type.AddShoppingListInput
 import de.wohlfrom.didyouget.graphql.type.AddShoppingListItemInput
 import de.wohlfrom.didyouget.graphql.type.BoughtShoppingListItemInput
+import de.wohlfrom.didyouget.graphql.type.DeleteShoppingListInput
+import de.wohlfrom.didyouget.graphql.type.DeleteShoppingListItemInput
 import de.wohlfrom.didyouget.graphql.type.RenameShoppingListInput
 import de.wohlfrom.didyouget.graphql.type.UpdateShoppingListItemInput
 import java.io.IOException
@@ -95,6 +99,28 @@ class ShoppingListDataSource {
         return Result.Error(Exception(response.errors?.get(0)?.message ?: "Unknown error"))
     }
 
+    suspend fun deleteShoppingList(itemId: String): Result<Boolean> {
+        val response = try {
+            apolloClient().mutation(
+                DeleteShoppingListMutation(DeleteShoppingListInput(itemId))
+            ).execute()
+        } catch (e: Exception) {
+            Log.e("deleteShoppingList", e.toString())
+            return Result.Error(IOException("Error deleting shopping list", e))
+        }
+        val success = response.data?.deleteShoppingList
+        if (success != null) {
+            return if (success.success) {
+                Result.Success(true)
+            } else if (!success.failureMessage.isNullOrEmpty()) {
+                Result.Error(Exception(success.failureMessage))
+            } else {
+                Result.Error(Exception("Unknown error"))
+            }
+        }
+        return Result.Error(Exception(response.errors?.get(0)?.message ?: "Unknown error"))
+    }
+
     suspend fun addListItem(listId: String, value: String): Result<ListItem> {
         val response = try {
             apolloClient().mutation(
@@ -148,6 +174,28 @@ class ShoppingListDataSource {
             return Result.Error(IOException("Error marking shopping list item bought", e))
         }
         val success = response.data?.markShoppingListItemBought
+        if (success != null) {
+            return if (success.success) {
+                Result.Success(true)
+            } else if (!success.failureMessage.isNullOrEmpty()) {
+                Result.Error(Exception(success.failureMessage))
+            } else {
+                Result.Error(Exception("Unknown error"))
+            }
+        }
+        return Result.Error(Exception(response.errors?.get(0)?.message ?: "Unknown error"))
+    }
+
+    suspend fun deleteShoppingListItem(listItemId: String): Result<Boolean> {
+        val response = try {
+            apolloClient().mutation(
+                DeleteShoppingListItemMutation(DeleteShoppingListItemInput(listItemId))
+            ).execute()
+        } catch (e: Exception) {
+            Log.e("deleteShoppingList", e.toString())
+            return Result.Error(IOException("Error delete shopping list", e))
+        }
+        val success = response.data?.deleteShoppingListItem
         if (success != null) {
             return if (success.success) {
                 Result.Success(true)

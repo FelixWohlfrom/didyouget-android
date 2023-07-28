@@ -58,7 +58,7 @@ class ShoppingListFragment : Fragment() {
         val view = binding.list
         with(view) {
             layoutManager = LinearLayoutManager(context)
-            adapter = ShoppingListAdapter(model.shoppingLists)
+            adapter = ShoppingListAdapter(shoppingListViewModel, model.shoppingLists)
         }
     }
 

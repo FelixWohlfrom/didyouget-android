@@ -11,3 +11,10 @@ mutation RenameShoppingList($renameShoppingListInput: renameShoppingListInput!) 
         failureMessage
     }
 }
+
+mutation DeleteShoppingList($deleteShoppingListInput: deleteShoppingListInput!) {
+    deleteShoppingList (input: $deleteShoppingListInput) {
+        success
+        failureMessage
+    }
+}

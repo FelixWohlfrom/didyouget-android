@@ -46,14 +46,14 @@ class AddListItemFragment : Fragment() {
 
     private fun handleResult(result: SimpleResult) {
         result.error?.let {
-            showLoadingFailed(it)
+            showFailedMessage(it)
         }
         result.success?.let {
             this.findNavController().popBackStack()
         }
     }
 
-    private fun showLoadingFailed(errorString: String) {
+    private fun showFailedMessage(errorString: String) {
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
     }
