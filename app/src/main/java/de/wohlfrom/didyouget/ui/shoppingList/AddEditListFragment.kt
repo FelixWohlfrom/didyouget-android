@@ -53,14 +53,14 @@ class AddEditListFragment : Fragment() {
 
     private fun handleResult(result: SimpleResult) {
         result.error?.let {
-            showUpdatingFailed(it)
+            showFailedMessage(it)
         }
         result.success?.let {
             this.findNavController().popBackStack()
         }
     }
 
-    private fun showUpdatingFailed(errorString: String) {
+    private fun showFailedMessage(errorString: String) {
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
     }

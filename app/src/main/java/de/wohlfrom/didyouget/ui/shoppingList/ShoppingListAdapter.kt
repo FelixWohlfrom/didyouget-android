@@ -1,9 +1,11 @@
 package de.wohlfrom.didyouget.ui.shoppingList
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import de.wohlfrom.didyouget.data.model.ShoppingList
@@ -13,6 +15,7 @@ import de.wohlfrom.didyouget.databinding.FragmentListItemBinding
  * [RecyclerView.Adapter] that can display a single [ShoppingList].
  */
 class ShoppingListAdapter(
+    private val shoppingListViewModel: ShoppingListViewModel,
     private val values: List<ShoppingList>
 ) : RecyclerView.Adapter<ShoppingListAdapter.ViewHolder>() {
 
@@ -40,6 +43,10 @@ class ShoppingListAdapter(
             it.findNavController().navigate(
                 ShoppingListFragmentDirections.showShoppingListItemAddEdit(item.id, item.name))
         }
+
+        holder.deleteList.setOnClickListener {
+            shoppingListViewModel.deleteShoppingList(item.id)
+        }
     }
 
     override fun getItemCount(): Int = values.size
@@ -48,6 +55,7 @@ class ShoppingListAdapter(
         RecyclerView.ViewHolder(binding.root) {
         val listName: TextView = binding.listName
         val editList: ImageButton = binding.editList
+        val deleteList: ImageButton = binding.deleteList
 
         override fun toString(): String {
             return super.toString() + " '" + listName.text + "'"

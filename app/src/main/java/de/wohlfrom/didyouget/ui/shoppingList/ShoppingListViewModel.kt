@@ -64,6 +64,19 @@ class ShoppingListViewModel(private val shoppingListRepository: ShoppingListRepo
         }
     }
 
+    fun deleteShoppingList(listId: String) {
+        viewModelScope.launch {
+            val result = shoppingListRepository.deleteShoppingList(listId)
+
+            if (result is Result.Success) {
+                _shoppingListResult.value =
+                    ShoppingListResult(success = ShoppingListView(shoppingLists = result.data))
+            } else if (result is Result.Error) {
+                _shoppingListResult.value = ShoppingListResult(error = result.exception.message)
+            }
+        }
+    }
+
     fun addListItem(listId: String, value: String, onResult: (SimpleResult) -> Unit) {
         viewModelScope.launch {
             val result = shoppingListRepository.addListItem(listId, value)
@@ -92,6 +105,18 @@ class ShoppingListViewModel(private val shoppingListRepository: ShoppingListRepo
     fun markListItemBought(listItemId: String, bought: Boolean, onResult: (SimpleResult) -> Unit) {
         viewModelScope.launch {
             val result = shoppingListRepository.markListItemBought(listItemId, bought)
+
+            if (result is Result.Success) {
+                onResult(SimpleResult(success = true))
+            } else if (result is Result.Error) {
+                onResult(SimpleResult(error = result.exception.message))
+            }
+        }
+    }
+
+    fun deleteShoppingListItem(listItemId: String, onResult: (SimpleResult) -> Unit) {
+        viewModelScope.launch {
+            val result = shoppingListRepository.deleteShoppingListItem(listItemId)
 
             if (result is Result.Success) {
                 onResult(SimpleResult(success = true))

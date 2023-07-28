@@ -56,7 +56,7 @@ class ListItemFragment : Fragment() {
         val view = binding.listItem
         with(view) {
             layoutManager = LinearLayoutManager(context)
-            adapter = ListItemAdapter(shoppingListViewModel, model.shoppingListItems)
+            adapter = ListItemAdapter(shoppingListViewModel, model.shoppingListItems, this.context)
         }
     }
 }

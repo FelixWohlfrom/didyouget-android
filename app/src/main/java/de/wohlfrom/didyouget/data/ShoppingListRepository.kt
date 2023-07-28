@@ -60,6 +60,24 @@ class ShoppingListRepository(val dataSource: ShoppingListDataSource) {
         return result
     }
 
+    suspend fun deleteShoppingList(itemId: String): Result<List<ShoppingList>> {
+        return when (val result = dataSource.deleteShoppingList(itemId)) {
+            is Result.Success -> {
+                val shoppingList = _shoppingListsById?.get(itemId)
+                _shoppingListsById?.remove(itemId)
+                _shoppingLists.removeIf { it.id == itemId }
+                shoppingList?.listItems?.forEach {
+                    _shoppingListItemsById?.remove(it.id)
+                }
+                Result.Success(_shoppingLists)
+            }
+
+            is Result.Error -> {
+                Result.Error(result.exception)
+            }
+        }
+    }
+
     suspend fun addListItem(listId: String, value: String): Result<Boolean> {
         return when (val result = dataSource.addListItem(listId, value)) {
             is Result.Success -> {
@@ -90,5 +108,22 @@ class ShoppingListRepository(val dataSource: ShoppingListDataSource) {
 
     suspend fun markListItemBought(listItemId: String, bought: Boolean): Result<Boolean> {
         return dataSource.markListItemBought(listItemId, bought)
+    }
+
+    suspend fun deleteShoppingListItem(listItemId: String): Result<Boolean> {
+        return when (val result = dataSource.deleteShoppingListItem(listItemId)) {
+            is Result.Success -> {
+                val listItem = _shoppingListItemsById?.get(listItemId)
+                _shoppingLists.forEach {
+                    it.listItems?.remove(listItem)
+                }
+                _shoppingListItemsById?.remove(listItemId)
+                Result.Success(true)
+            }
+
+            is Result.Error -> {
+                Result.Error(result.exception)
+            }
+        }
     }
 }
