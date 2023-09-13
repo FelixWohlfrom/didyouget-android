@@ -28,4 +28,9 @@ jobs:
         wrapper-cache-enabled: true
         dependencies-cache-enabled: true
         configuration-cache-enabled: true
-        arguments: build
+        arguments: build koverXmlReportDebug
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        files: app/build/reports/kover/reportDebug.xml
