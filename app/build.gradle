@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.apollographql.apollo3' version '3.8.2'
     id 'androidx.navigation.safeargs.kotlin' version '2.7.2'
+
+    id 'org.jetbrains.kotlinx.kover' version '0.7.3'
 }
 
 android {
