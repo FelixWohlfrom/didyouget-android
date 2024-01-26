@@ -61,7 +61,7 @@ jobs:
           java-version: 17
 
       - name: Build the code
-        uses: eskatos/gradle-command-action@v2
+        uses: eskatos/gradle-command-action@v3
         with:
           wrapper-cache-enabled: true
           dependencies-cache-enabled: true
