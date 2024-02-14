@@ -22,8 +22,10 @@ jobs:
         distribution: 'temurin'
         java-version: 17
 
-    - name: Build the app and execute unit tests
+    - name: Setup gradle
       uses: gradle/actions/setup-gradle@v3
+
+    - name: Build the app and execute unit tests
       run: ./gradlew build koverXmlReportDebug
 
     - name: Upload coverage to Codecov

@@ -60,8 +60,10 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
-      - name: Build the code
+      - name: Setup gradle
         uses: gradle/actions/setup-gradle@v3
+
+      - name: Build the code
         run: ./gradlew assemble assembleAndroidTest assembleDebugUnitTest
 
       - name: Perform CodeQL Analysis
