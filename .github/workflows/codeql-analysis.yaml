@@ -61,12 +61,8 @@ jobs:
           java-version: 17
 
       - name: Build the code
-        uses: eskatos/gradle-command-action@v2
-        with:
-          wrapper-cache-enabled: true
-          dependencies-cache-enabled: true
-          configuration-cache-enabled: true
-          arguments: assemble assembleAndroidTest assembleDebugUnitTest
+        uses: gradle/actions/setup-gradle@v3
+        run: ./gradlew assemble assembleAndroidTest assembleDebugUnitTest
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
