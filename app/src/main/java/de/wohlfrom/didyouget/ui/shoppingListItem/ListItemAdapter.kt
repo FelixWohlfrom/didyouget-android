@@ -7,12 +7,9 @@ import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import de.wohlfrom.didyouget.data.model.ListItem
 import de.wohlfrom.didyouget.databinding.FragmentItemBinding
-import de.wohlfrom.didyouget.ui.common.SimpleResult
-import de.wohlfrom.didyouget.ui.shoppingList.ShoppingListFragmentDirections
 import de.wohlfrom.didyouget.ui.shoppingList.ShoppingListViewModel
 
 /**

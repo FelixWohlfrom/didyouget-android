@@ -7,9 +7,7 @@ import io.mockk.mockk
 import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.instanceOf
 import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.isA
 import org.junit.Test
 import java.util.LinkedList
 
