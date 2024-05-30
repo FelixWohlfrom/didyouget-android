@@ -1,11 +1,9 @@
 package de.wohlfrom.didyouget.ui.shoppingList
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import de.wohlfrom.didyouget.data.model.ShoppingList

@@ -10,7 +10,7 @@ import de.wohlfrom.didyouget.data.sources.LoginDataSource
  * ViewModel provider factory to instantiate LoginViewModel.
  * Required given LoginViewModel has a non-empty constructor
  */
-class LoginViewModelFactory constructor(private val activity: Activity) : ViewModelProvider.Factory {
+class LoginViewModelFactory(private val activity: Activity) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

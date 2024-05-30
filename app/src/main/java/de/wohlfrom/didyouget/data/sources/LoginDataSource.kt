@@ -39,7 +39,7 @@ class LoginDataSource {
         val response = apolloClient().query(IsLoggedInQuery()).execute()
 
         return if (response.data?.isLoggedIn?.success == true) {
-            Result.Success(true);
+            Result.Success(true)
         } else if (response.hasErrors()) {
             Result.Error(Exception(response.errors.toString()))
         } else {
