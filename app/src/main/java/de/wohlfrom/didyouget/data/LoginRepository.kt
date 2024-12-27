@@ -3,6 +3,7 @@ package de.wohlfrom.didyouget.data
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.google.gson.Gson
 import de.wohlfrom.didyouget.data.model.LoggedInUser
 import de.wohlfrom.didyouget.data.sources.LoginDataSource
@@ -52,6 +53,9 @@ class LoginRepository(val dataSource: LoginDataSource, activity: Activity) {
         if (result is Result.Success) {
             setLoggedInUser(result.data)
         } else {
+            if (result is Result.Error) {
+                Log.e("login", result.exception.stackTraceToString())
+            }
             logout()
         }
 
