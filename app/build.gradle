@@ -7,34 +7,34 @@ plugins {
 }
 
 android {
-    namespace 'de.wohlfrom.didyouget'
-    compileSdk 35
+    namespace = 'de.wohlfrom.didyouget'
+    compileSdk = 35
 
     defaultConfig {
-        applicationId "de.wohlfrom.didyouget"
-        minSdk 24
-        targetSdk 35
-        versionCode 1
-        versionName "0.1"
+        applicationId = "de.wohlfrom.didyouget"
+        minSdk = 24
+        targetSdk = 35
+        versionCode = 1
+        versionName = "0.1"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_21
-        targetCompatibility JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     kotlinOptions {
         jvmTarget = '21'
     }
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
 }
 
