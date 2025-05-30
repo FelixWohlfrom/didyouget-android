@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlinx.kover'
-    id 'com.apollographql.apollo' version '4.1.1'
+    id 'com.apollographql.apollo' version '4.2.0'
     id 'androidx.navigation.safeargs.kotlin' version '2.9.0'
 }
 
@@ -66,10 +66,10 @@ dependencies {
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.1'
 
-    implementation 'com.google.code.gson:gson:2.11.0'
+    implementation 'com.google.code.gson:gson:2.13.1'
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'io.mockk:mockk:1.13.14'
+    testImplementation 'io.mockk:mockk:1.14.2'
     testImplementation 'org.hamcrest:hamcrest:3.0'
 
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
