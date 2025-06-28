@@ -14,8 +14,9 @@
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="text"
+        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addListItemLabel"
         tools:ignore="LabelFor" />
 
     <Button
@@ -25,5 +26,16 @@
         android:text="@string/save"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addValue" />
+
+    <TextView
+        android:id="@+id/addListItemLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/addValue"
+        android:text="@string/add_new_list_item"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

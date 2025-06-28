@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import de.wohlfrom.didyouget.R
 import de.wohlfrom.didyouget.databinding.FragmentAddEditListBinding
 import de.wohlfrom.didyouget.ui.common.SimpleResult
 
@@ -46,6 +47,12 @@ class AddEditListFragment : Fragment() {
                     handleResult(it)
                 }
             }
+        }
+
+        if (args.listName == null || args.listName!!.isBlank()) {
+            binding.addEditListLabel.setText(R.string.add_new_list)
+        } else {
+            binding.addEditListLabel.setText(R.string.edit_list)
         }
 
         binding.addEditName.setText(args.listName)
