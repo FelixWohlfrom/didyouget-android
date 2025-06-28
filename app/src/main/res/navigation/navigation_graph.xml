@@ -53,6 +53,7 @@
             android:id="@+id/backToShoppingListItem"
             app:destination="@id/shoppingListFragment" />
         <argument android:name="listId" />
+        <argument android:name="listName" />
         <action
             android:id="@+id/showShoppingListItemAdd"
             app:destination="@id/addListItemFragment" />

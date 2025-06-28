@@ -22,6 +22,7 @@
     <string name="add_new_list">Add new list</string>
     <string name="delete_list">Delete list</string>
     <string name="save">Save</string>
+    <string name="shopping_lists_label">Shopping Lists</string>
 
     <!-- Strings related to shopping list item view -->
     <string name="edit_list_item">Edit list item</string>
