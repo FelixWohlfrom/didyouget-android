@@ -2,18 +2,18 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlinx.kover'
-    id 'com.apollographql.apollo' version '4.2.0'
+    id 'com.apollographql.apollo' version '4.3.1'
     id 'androidx.navigation.safeargs.kotlin' version '2.9.0'
 }
 
 android {
     namespace = 'de.wohlfrom.didyouget'
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "de.wohlfrom.didyouget"
         minSdk = 24
-        targetSdk = 35
+        targetSdk 36
         versionCode = 1
         versionName = "0.1"
 
@@ -46,14 +46,14 @@ apollo {
 
 dependencies {
     implementation 'androidx.core:core-ktx:1.16.0'
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.annotation:annotation:1.9.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
 
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.9.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.9.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1'
 
-    implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha07'
+    implementation 'androidx.security:security-crypto-ktx:1.1.0-beta01'
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.9.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.9.0'
@@ -62,14 +62,14 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.4.0'
 
     implementation 'com.google.android.material:material:1.12.0'
-    implementation 'com.apollographql.apollo:apollo-runtime:4.2.0'
+    implementation 'com.apollographql.apollo:apollo-runtime:4.3.1'
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2'
 
     implementation 'com.google.code.gson:gson:2.13.1'
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'io.mockk:mockk:1.14.2'
+    testImplementation 'io.mockk:mockk:1.14.4'
     testImplementation 'org.hamcrest:hamcrest:3.0'
 
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
