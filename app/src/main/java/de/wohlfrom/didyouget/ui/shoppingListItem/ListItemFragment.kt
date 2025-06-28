@@ -48,6 +48,8 @@ class ListItemFragment : Fragment() {
             )
         }
 
+        binding.listItemLabel.text = args.listName
+
         shoppingListViewModel.loadListItems(args.listId)
     }
 

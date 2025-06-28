@@ -34,7 +34,7 @@ class ShoppingListAdapter(
 
         holder.listName.setOnClickListener {
             it.findNavController().navigate(
-                ShoppingListFragmentDirections.showShoppingListItem(item.id))
+                ShoppingListFragmentDirections.showShoppingListItem(item.id, item.name))
         }
 
         holder.editList.setOnClickListener {
