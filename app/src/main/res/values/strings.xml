@@ -10,7 +10,7 @@
     <string name="prompt_user">Username</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
-    <string name="welcome">Welcome %1$s!</string>
+    <string name="welcome">Welcome back %1$s!</string>
     <string name="invalid_username">Username must not be empty.</string>
     <string name="invalid_password">Password must not be empty.</string>
     <string name="login_failed">Login failed. Message from server: %1$s</string>
@@ -27,5 +27,5 @@
     <string name="edit_list_item">Edit list item</string>
     <string name="add_new_list_item">Add new list item</string>
     <string name="delete_list_item">Delete list item</string>
-    <string name="item_is_already_bought">Item is already bought?</string>
+    <string name="item_is_already_bought">Item is already bought</string>
 </resources>
