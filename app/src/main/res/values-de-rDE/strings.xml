@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="header_login">DidYouGet? Anmeldung</string>
+    <string name="prompt_url">Server Url</string>
+    <string name="prompt_user">Benutzername</string>
+    <string name="prompt_password">Passwort</string>
+    <string name="action_sign_in">Anmeldung</string>
+    <string name="welcome">Wilkommen zurück %1$s!</string>
+    <string name="invalid_username">Benutzername darf nicht leer sein.</string>
+    <string name="invalid_password">Passwort darf nicht leer sein.</string>
+    <string name="login_failed">Anmeldung fehlgeschlagen. Meldung des Servers: %1$s</string>
+    <string name="invalid_server_url">Bitte eine gültige URL eingeben.</string>
+    <string name="cant_connect_to_server_url">Kann keine Verbindung zum Server herstellen. Bitte URL überprüfen.</string>
+    <string name="edit_list">Liste bearbeiten</string>
+    <string name="add_new_list">Neue Liste hinzufügen</string>
+    <string name="delete_list">Liste entfernen</string>
+    <string name="save">Speichern</string>
+    <string name="shopping_lists_label">Einkaufslisten</string>
+    <string name="edit_list_item">Element bearbeiten</string>
+    <string name="add_new_list_item">Neues Element hinzufügen</string>
+    <string name="delete_list_item">Element entfernen</string>
+    <string name="item_is_already_bought">Element wurde bereits gekauft</string>
+</resources>
