@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = 'de.wohlfrom.didyouget'
-    compileSdk = 36
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "de.wohlfrom.didyouget"
         minSdk = 24
-        targetSdk 36
+        targetSdk = 35
         versionCode = 1
         versionName = "0.1"
 
@@ -30,11 +30,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
-    kotlinOptions {
-        jvmTarget = '21'
-    }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 }
 
@@ -71,6 +75,16 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'io.mockk:mockk:1.14.4'
     testImplementation 'org.hamcrest:hamcrest:3.0'
+    testImplementation 'org.robolectric:robolectric:4.15.1'
+    testImplementation 'androidx.test.ext:junit:1.2.1'
+    testImplementation 'androidx.test.ext:junit-ktx:1.2.1'
+    testImplementation 'androidx.test:runner:1.6.2'
+    testImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    testImplementation 'androidx.test.espresso:espresso-contrib:3.6.1'
+
+    // Those need to be included together to be working
+    testImplementation 'androidx.fragment:fragment-testing:1.8.8'
+    debugImplementation 'androidx.fragment:fragment-testing-manifest:1.8.8'
 
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'

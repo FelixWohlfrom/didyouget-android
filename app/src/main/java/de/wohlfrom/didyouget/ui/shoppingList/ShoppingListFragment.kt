@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import de.wohlfrom.didyouget.databinding.FragmentListBinding
 
 /**
- * A fragment representing a list of Items.
+ * A fragment representing a shopping list.
  */
-class ShoppingListFragment : Fragment() {
+class ShoppingListFragment: Fragment() {
 
     private val shoppingListViewModel: ShoppingListViewModel by activityViewModels {
         ShoppingListViewModel.Factory
