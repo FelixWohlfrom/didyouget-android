@@ -73,9 +73,10 @@ class ShoppingListFragmentTest {
 
     @Test
     fun testLoadingListSuccess() {
-        val resultList = LinkedList<ShoppingList>()
-        resultList.add(ShoppingList("1", "First item"))
-        resultList.add(ShoppingList("2", "Second item"))
+        val resultList = listOf(
+            ShoppingList("1", "First item"),
+            ShoppingList("2", "Second item")
+        )
 
         mockkConstructor(ShoppingListRepository::class)
         coEvery { anyConstructed<ShoppingListRepository>().loadShoppingLists() } returns
@@ -97,9 +98,10 @@ class ShoppingListFragmentTest {
 
     @Test
     fun testClickOnList() {
-        val resultList = LinkedList<ShoppingList>()
-        resultList.add(ShoppingList("1", "First item"))
-        resultList.add(ShoppingList("2", "Second item"))
+        val resultList = listOf(
+            ShoppingList("1", "First item"),
+            ShoppingList("2", "Second item")
+        )
 
         mockkConstructor(ShoppingListRepository::class)
         coEvery { anyConstructed<ShoppingListRepository>().loadShoppingLists() } returns
