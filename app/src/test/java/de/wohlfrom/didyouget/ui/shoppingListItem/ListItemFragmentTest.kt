@@ -3,10 +3,7 @@ package de.wohlfrom.didyouget.ui.shoppingListItem
 import androidx.core.os.bundleOf
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
-import androidx.navigation.Navigation
-import androidx.navigation.testing.TestNavHostController
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.contrib.RecyclerViewActions.scrollTo
@@ -14,16 +11,12 @@ import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.google.common.truth.Truth.assertThat
 import de.wohlfrom.didyouget.BuildConfig
 import de.wohlfrom.didyouget.R
 import de.wohlfrom.didyouget.data.ShoppingListRepository
 import de.wohlfrom.didyouget.data.model.ListItem
-import de.wohlfrom.didyouget.data.model.ShoppingList
 import de.wohlfrom.didyouget.data.sources.Result
-import de.wohlfrom.didyouget.ui.shoppingList.ShoppingListFragment
 import io.mockk.coEvery
-import io.mockk.coJustRun
 import io.mockk.coVerify
 import io.mockk.mockk
 import io.mockk.mockkConstructor
@@ -31,8 +24,6 @@ import org.junit.Assume.assumeTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.shadows.ShadowToast
-import java.util.LinkedList
 
 @RunWith(AndroidJUnit4::class)
 class ListItemFragmentTest {
