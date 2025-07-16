@@ -74,19 +74,18 @@ dependencies {
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'io.mockk:mockk:1.14.5'
-    testImplementation 'org.hamcrest:hamcrest:3.0'
     testImplementation 'org.robolectric:robolectric:4.15.1'
+    testImplementation 'androidx.test:runner:1.6.2'
     testImplementation 'androidx.test.ext:junit:1.2.1'
     testImplementation 'androidx.test.ext:junit-ktx:1.2.1'
-    testImplementation 'androidx.test:runner:1.6.2'
+    testImplementation 'androidx.test.ext:truth:1.6.0'
     testImplementation 'androidx.test.espresso:espresso-core:3.6.1'
     testImplementation 'androidx.test.espresso:espresso-contrib:3.6.1'
+    testImplementation 'androidx.navigation:navigation-testing:2.9.2'
 
     // Those need to be included together to be working
     testImplementation 'androidx.fragment:fragment-testing:1.8.8'
     debugImplementation 'androidx.fragment:fragment-testing-manifest:1.8.8'
 
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
-    androidTestImplementation 'androidx.navigation:navigation-testing:2.9.2'
 }
