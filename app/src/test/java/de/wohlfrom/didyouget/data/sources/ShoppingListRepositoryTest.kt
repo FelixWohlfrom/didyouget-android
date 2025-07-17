@@ -1,15 +1,13 @@
 package de.wohlfrom.didyouget.data.sources
 
+import com.google.common.truth.Truth.assertThat
 import de.wohlfrom.didyouget.data.ShoppingListRepository
 import de.wohlfrom.didyouget.data.model.ShoppingList
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
 import org.junit.Test
-import java.util.LinkedList
 
 class ShoppingListRepositoryTest {
 
@@ -18,9 +16,10 @@ class ShoppingListRepositoryTest {
      */
     @Test
     fun loadShoppingLists_Success() = runBlocking {
-        val shoppingListsToLoad = LinkedList<ShoppingList>()
-        shoppingListsToLoad.add(ShoppingList("1", "MyList", null))
-        shoppingListsToLoad.add(ShoppingList("1", "MySecondList", null))
+        val shoppingListsToLoad = listOf(
+            ShoppingList("1", "MyList", null),
+            ShoppingList("1", "MySecondList", null)
+        )
 
         val dataSource = mockk<ShoppingListDataSource>()
         coEvery { dataSource.loadShoppingLists() } returns Result.Success(shoppingListsToLoad)
@@ -29,7 +28,7 @@ class ShoppingListRepositoryTest {
         val result = repository.loadShoppingLists()
 
         if (result is Result.Success) {
-            assertThat(result.data, `is`(shoppingListsToLoad))
+            assertThat(result.data).isEqualTo(shoppingListsToLoad)
         } else {
             TestCase.fail("Failed to load shopping lists")
         }
@@ -49,7 +48,7 @@ class ShoppingListRepositoryTest {
         val result = repository.loadShoppingLists()
 
         if (result is Result.Error) {
-            assertThat(result.exception.message, `is`("An error happened"))
+            assertThat(result.exception.message).isEqualTo("An error happened")
         } else {
             TestCase.fail("Unexpected success on loading shopping lists")
         }
