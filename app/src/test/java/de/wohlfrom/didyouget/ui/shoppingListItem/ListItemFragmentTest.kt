@@ -34,6 +34,9 @@ class ListItemFragmentTest {
         assumeTrue("Skipping fragment test in release mode", BuildConfig.DEBUG)
     }
 
+    /**
+     * Verifies that the fragment shows given list items.
+     */
     @Test
     fun testLoadingList() {
         val listItems = listOf(
@@ -62,6 +65,10 @@ class ListItemFragmentTest {
         coVerify { ShoppingListRepository(mockk()).loadListItems(any()) }
     }
 
+    /**
+     * Verifies that clicking on a list item initiates an update
+     * in the repository.
+     */
     @Test
     fun testMarkBoughtSuccess() {
         val listItems = listOf(
@@ -87,6 +94,10 @@ class ListItemFragmentTest {
         coVerify { ShoppingListRepository(mockk()).markListItemBought("1", true) }
     }
 
+    /**
+     * Verifies that clicking on a list item shows a failure message
+     * if the update in the repository fails.
+     */
     @Test
     fun testMarkBoughtFailure() {
         val expectedFailureMessage = "Failure message"

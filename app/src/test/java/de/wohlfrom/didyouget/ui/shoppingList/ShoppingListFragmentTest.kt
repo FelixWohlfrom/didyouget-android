@@ -37,6 +37,10 @@ class ShoppingListFragmentTest {
         assumeTrue("Skipping fragment test in release mode", BuildConfig.DEBUG)
     }
 
+    /**
+     * Verifies that the fragment can be shown, even if an error appears
+     * during loading of the shopping lists.
+     */
     @Test
     fun testLoadingFailure() {
         val expectedFailureMessage = "Failure message"
@@ -55,6 +59,10 @@ class ShoppingListFragmentTest {
         assertThat(ShadowToast.getTextOfLatestToast()).isEqualTo(expectedFailureMessage)
     }
 
+    /**
+     * Verifies that the fragment can be loaded if the loaded shopping
+     * list is empty.
+     */
     @Test
     fun testLoadingEmptyListSuccess() {
         mockkConstructor(ShoppingListRepository::class)
@@ -71,6 +79,10 @@ class ShoppingListFragmentTest {
         coVerify { ShoppingListRepository(mockk()).loadShoppingLists() }
     }
 
+    /**
+     * Verifies that the fragment can be loaded if the loaded shopping
+     * list contains items.
+     */
     @Test
     fun testLoadingListSuccess() {
         val resultList = listOf(
@@ -96,6 +108,10 @@ class ShoppingListFragmentTest {
         coVerify { ShoppingListRepository(mockk()).loadShoppingLists() }
     }
 
+    /**
+     * Verifies that a click on a shopping list item initiates loading
+     * of a single shopping list.
+     */
     @Test
     fun testClickOnList() {
         val resultList = listOf(
