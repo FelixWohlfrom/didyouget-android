@@ -9,6 +9,7 @@ import de.wohlfrom.didyouget.data.model.LoggedInUser
 import de.wohlfrom.didyouget.data.sources.LoginDataSource
 import de.wohlfrom.didyouget.data.sources.Result
 import de.wohlfrom.didyouget.data.sources.apolloClient
+import androidx.core.content.edit
 
 /**
  * The key in storage in which the currently logged in user is stored.
@@ -65,9 +66,8 @@ class LoginRepository(val dataSource: LoginDataSource, activity: Activity) {
     private fun setLoggedInUser(loggedInUser: LoggedInUser) {
         this.user = loggedInUser
 
-        with(localStore!!.edit()) {
+        localStore!!.edit {
             putString(LOGGED_IN_USER_KEY, Gson().toJson(loggedInUser))
-            apply()
         }
     }
 
