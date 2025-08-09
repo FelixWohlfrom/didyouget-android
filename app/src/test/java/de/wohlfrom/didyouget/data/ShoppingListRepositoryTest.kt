@@ -1,16 +1,16 @@
-package de.wohlfrom.didyouget.data.sources
+package de.wohlfrom.didyouget.data
 
-import com.google.common.truth.Truth.assertThat
-import de.wohlfrom.didyouget.data.ShoppingListRepository
+import com.google.common.truth.Truth
 import de.wohlfrom.didyouget.data.model.ListItem
 import de.wohlfrom.didyouget.data.model.ShoppingList
+import de.wohlfrom.didyouget.data.sources.Result
+import de.wohlfrom.didyouget.data.sources.ShoppingListDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
-import java.util.LinkedList
 
 class ShoppingListRepositoryTest {
 
@@ -35,7 +35,7 @@ class ShoppingListRepositoryTest {
         val result = repository.loadShoppingLists()
 
         if (result is Result.Success) {
-            assertThat(result.data).isEqualTo(shoppingListsToLoad)
+            Truth.assertThat(result.data).isEqualTo(shoppingListsToLoad)
         } else {
             TestCase.fail("Failed to load shopping lists")
         }
@@ -55,7 +55,7 @@ class ShoppingListRepositoryTest {
         val result = repository.loadShoppingLists()
 
         if (result is Result.Error) {
-            assertThat(result.exception.message).isEqualTo("An error happened")
+            Truth.assertThat(result.exception.message).isEqualTo("An error happened")
         } else {
             TestCase.fail("Unexpected success on loading shopping lists")
         }
@@ -83,18 +83,18 @@ class ShoppingListRepositoryTest {
 
         val repository = ShoppingListRepository(dataSource)
         var result = repository.loadListItems("1")
-        assertThat(result).hasSize(0)
+        Truth.assertThat(result).hasSize(0)
 
         result = repository.loadListItems("2")
-        assertThat(result).hasSize(0)
+        Truth.assertThat(result).hasSize(0)
 
         result = repository.loadListItems("3")
-        assertThat(result).hasSize(2)
-        assertThat(result[1].id).isEqualTo("2")
-        assertThat(result[1].value).isEqualTo("SecondItem")
+        Truth.assertThat(result).hasSize(2)
+        Truth.assertThat(result[1].id).isEqualTo("2")
+        Truth.assertThat(result[1].value).isEqualTo("SecondItem")
 
         result = repository.loadListItems("invalid")
-        assertThat(result).hasSize(0)
+        Truth.assertThat(result).hasSize(0)
     }
 
     /**
@@ -113,7 +113,7 @@ class ShoppingListRepositoryTest {
 
         val result = repository.addShoppingList("New list")
         coVerify { dataSource.addShoppingList("New list") }
-        assertThat(result is Result.Success).isTrue()
+        Truth.assertThat(result is Result.Success).isTrue()
     }
 
     /**
@@ -134,7 +134,7 @@ class ShoppingListRepositoryTest {
         val result = repository.addShoppingList("New list")
         coVerify { dataSource.addShoppingList("New list") }
         if (result is Result.Error) {
-            assertThat(result.exception.message).isEqualTo(expectedFailure)
+            Truth.assertThat(result.exception.message).isEqualTo(expectedFailure)
         } else {
             TestCase.fail("Unexpected success on adding a shopping list")
         }
@@ -156,8 +156,8 @@ class ShoppingListRepositoryTest {
 
         val result = repository.renameShoppingList("42", "New name")
         coVerify { dataSource.renameShoppingList("42", "New name") }
-        assertThat(result is Result.Success).isTrue()
-        assertThat(mockList[0].name).isEqualTo("New name")
+        Truth.assertThat(result is Result.Success).isTrue()
+        Truth.assertThat(mockList[0].name).isEqualTo("New name")
     }
 
     /**
@@ -177,7 +177,7 @@ class ShoppingListRepositoryTest {
         val result = repository.renameShoppingList("42", "New name")
         coVerify { dataSource.renameShoppingList("42", "New name") }
         if (result is Result.Error) {
-            assertThat(result.exception.message).isEqualTo(expectedFailure)
+            Truth.assertThat(result.exception.message).isEqualTo(expectedFailure)
         } else {
             TestCase.fail("Unexpected success on renaming a shopping list")
         }
@@ -198,7 +198,7 @@ class ShoppingListRepositoryTest {
 
         val result = repository.deleteShoppingList("42")
         coVerify { dataSource.deleteShoppingList("42") }
-        assertThat(result is Result.Success).isTrue()
+        Truth.assertThat(result is Result.Success).isTrue()
     }
 
     /**
@@ -207,7 +207,8 @@ class ShoppingListRepositoryTest {
     @Test
     fun deleteShoppingList_Success_WithItems() = runBlocking {
         val mockList = listOf(
-            ShoppingList("42", "List name",
+            ShoppingList(
+                "42", "List name",
                 mutableListOf(ListItem("1", "List item", false))
             )
         )
@@ -220,7 +221,7 @@ class ShoppingListRepositoryTest {
 
         val result = repository.deleteShoppingList("42")
         coVerify { dataSource.deleteShoppingList("42") }
-        assertThat(result is Result.Success).isTrue()
+        Truth.assertThat(result is Result.Success).isTrue()
     }
 
     /**
@@ -240,7 +241,7 @@ class ShoppingListRepositoryTest {
         val result = repository.deleteShoppingList("42")
         coVerify { dataSource.deleteShoppingList("42") }
         if (result is Result.Error) {
-            assertThat(result.exception.message).isEqualTo(expectedFailure)
+            Truth.assertThat(result.exception.message).isEqualTo(expectedFailure)
         } else {
             TestCase.fail("Unexpected success on deleting a shopping list")
         }
