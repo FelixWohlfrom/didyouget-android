@@ -72,7 +72,7 @@ class ListItemAdapter(
         Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
     }
 
-    inner class ViewHolder(binding: FragmentItemBinding) :
+    class ViewHolder(binding: FragmentItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val item: CheckBox = binding.itemName
         val editItem: ImageButton = binding.editItem
