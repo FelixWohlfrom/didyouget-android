@@ -26,18 +26,19 @@ jobs:
       uses: gradle/actions/setup-gradle@v5
 
     - name: Build the app and execute unit tests
-      run: ./gradlew build koverXmlReportDebug
+      run: ./gradlew build koverXmlReport
 
     - name: Upload coverage to Codecov
       if: ${{ !cancelled() }}
       uses: codecov/codecov-action@v5
       with:
-        files: app/build/reports/kover/reportDebug.xml
+        files: app/build/reports/kover/report.xml
         token: ${{ secrets.CODECOV_SECRET }}
         fail_ci_if_error: true
 
     - name: Upload test results to Codecov
       if: ${{ !cancelled() }}
-      uses: codecov/test-results-action@v1
+      uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_SECRET }}
+        report_type: test_results

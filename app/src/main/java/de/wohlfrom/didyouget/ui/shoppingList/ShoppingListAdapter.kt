@@ -49,7 +49,7 @@ class ShoppingListAdapter(
 
     override fun getItemCount(): Int = values.size
 
-    inner class ViewHolder(binding: FragmentListItemBinding) :
+    class ViewHolder(binding: FragmentListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val listName: TextView = binding.listName
         val editList: ImageButton = binding.editList
