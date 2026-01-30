@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlinx.kover")
     id("com.apollographql.apollo") version "4.4.1"
-    id("androidx.navigation.safeargs.kotlin") version "2.9.6"
+    id("androidx.navigation.safeargs.kotlin") version "2.9.7"
 }
 
 android {
