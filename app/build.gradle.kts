@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlinx.kover")
-    id("com.apollographql.apollo") version "4.4.0"
+    id("com.apollographql.apollo") version "4.4.1"
     id("androidx.navigation.safeargs.kotlin") version "2.9.6"
 }
 
@@ -56,21 +56,21 @@ dependencies {
 
     implementation("androidx.security:security-crypto-ktx:1.1.0")
 
-    implementation("androidx.navigation:navigation-fragment-ktx:2.9.6")
-    implementation("androidx.navigation:navigation-ui-ktx:2.9.6")
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.9.6")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.7")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.9.7")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.4.0")
 
     implementation("com.google.android.material:material:1.13.0")
-    implementation("com.apollographql.apollo:apollo-runtime:4.4.0")
+    implementation("com.apollographql.apollo:apollo-runtime:4.4.1")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
 
     implementation("com.google.code.gson:gson:2.13.2")
 
     testImplementation("junit:junit:4.13.2")
-    testImplementation("io.mockk:mockk:1.14.7")
+    testImplementation("io.mockk:mockk:1.14.9")
     testImplementation("org.robolectric:robolectric:4.16.1")
     testImplementation("androidx.test:runner:1.7.0")
     testImplementation("androidx.test.ext:junit:1.3.0")
@@ -78,7 +78,7 @@ dependencies {
     testImplementation("androidx.test.ext:truth:1.7.0")
     testImplementation("androidx.test.espresso:espresso-core:3.7.0")
     testImplementation("androidx.test.espresso:espresso-contrib:3.7.0")
-    testImplementation("androidx.navigation:navigation-testing:2.9.6")
+    testImplementation("androidx.navigation:navigation-testing:2.9.7")
 
     // Those need to be included together to be working
     testImplementation("androidx.fragment:fragment-testing:1.8.9")
