@@ -1,6 +1,6 @@
 package de.wohlfrom.didyouget.ui.shoppingListItem
 
-import androidx.core.os.bundleOf
+import android.os.Bundle
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
@@ -48,10 +48,10 @@ class ListItemFragmentTest {
         coEvery { anyConstructed<ShoppingListRepository>().loadListItems(any()) } returns listItems
 
         val scenario = launchFragmentInContainer<ListItemFragment>(
-            fragmentArgs = bundleOf(
-                "listId" to "0",
-                "listName" to "First list"
-            ),
+            fragmentArgs = Bundle().apply {
+                putString("listId", "0")
+                putString("listName", "First list")
+            },
             initialState = Lifecycle.State.INITIALIZED
         )
         scenario.moveToState(Lifecycle.State.STARTED)
@@ -81,10 +81,10 @@ class ListItemFragmentTest {
         coEvery { anyConstructed<ShoppingListRepository>().markListItemBought(any(), any()) } returns Result.Success(true)
 
         launchFragmentInContainer<ListItemFragment>(
-            fragmentArgs = bundleOf(
-                "listId" to "0",
-                "listName" to "First list"
-            )
+            fragmentArgs = Bundle().apply {
+                putString("listId", "0")
+                putString("listName", "First list")
+            }
         )
 
         onView(withId(R.id.listItem))
@@ -114,10 +114,10 @@ class ListItemFragmentTest {
         )
 
         launchFragmentInContainer<ListItemFragment>(
-            fragmentArgs = bundleOf(
-                "listId" to "0",
-                "listName" to "First list"
-            )
+            fragmentArgs = Bundle().apply {
+                putString("listId", "0")
+                putString("listName", "First list")
+            }
         )
 
         onView(withId(R.id.listItem))
