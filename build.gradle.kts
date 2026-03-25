@@ -2,5 +2,5 @@
 plugins {
     id("com.android.application") version "9.1.0" apply false
     id("com.android.library") version "9.1.0" apply false
-    id("org.jetbrains.kotlinx.kover") version "0.9.7" apply false
+    id("org.jetbrains.kotlinx.kover") version "0.9.8" apply false
 }
