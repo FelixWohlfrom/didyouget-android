@@ -30,7 +30,7 @@ jobs:
 
     - name: Upload coverage to Codecov
       if: ${{ !cancelled() }}
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v6
       with:
         files: app/build/reports/kover/report.xml
         token: ${{ secrets.CODECOV_SECRET }}
@@ -38,7 +38,7 @@ jobs:
 
     - name: Upload test results to Codecov
       if: ${{ !cancelled() }}
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v6
       with:
         token: ${{ secrets.CODECOV_SECRET }}
         report_type: test_results
