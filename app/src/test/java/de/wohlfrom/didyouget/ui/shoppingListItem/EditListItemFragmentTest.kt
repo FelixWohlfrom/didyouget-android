@@ -6,6 +6,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.clearText
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -56,7 +57,7 @@ class EditListItemFragmentTest {
             Navigation.setViewNavController(fragment.requireView(), navController)
         }
 
-        onView(withId(R.id.editValue)).perform(typeText("New Value"))
+        onView(withId(R.id.editValue)).perform(clearText(), typeText("New Value"))
         onView(withId(R.id.itemBought)).perform(click())
         onView(withId(R.id.saveButton)).perform(click())
 
@@ -91,7 +92,7 @@ class EditListItemFragmentTest {
             Navigation.setViewNavController(fragment.requireView(), navController)
         }
 
-        onView(withId(R.id.editValue)).perform(typeText("New Value"))
+        onView(withId(R.id.editValue)).perform(clearText(), typeText("New Value"))
         onView(withId(R.id.itemBought)).perform(click())
         onView(withId(R.id.saveButton)).perform(click())
 
