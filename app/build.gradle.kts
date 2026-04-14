@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlinx.kover")
-    id("com.apollographql.apollo") version "4.4.2"
+    id("com.apollographql.apollo") version "4.4.3"
     id("androidx.navigation.safeargs.kotlin") version "2.9.7"
 }
 
@@ -48,7 +48,7 @@ apollo {
 dependencies {
     implementation("androidx.core:core-ktx:1.18.0")
     implementation("androidx.appcompat:appcompat:1.7.1")
-    implementation("androidx.annotation:annotation:1.9.1")
+    implementation("androidx.annotation:annotation:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
 
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.10.0")
@@ -63,7 +63,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.4.0")
 
     implementation("com.google.android.material:material:1.13.0")
-    implementation("com.apollographql.apollo:apollo-runtime:4.4.2")
+    implementation("com.apollographql.apollo:apollo-runtime:4.4.3")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
 
