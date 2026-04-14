@@ -7,8 +7,8 @@ plugins {
 
 android {
     namespace = "de.wohlfrom.didyouget"
-    compileSdk = 37
-    compileSdkMinor = 0
+    compileSdk = 36
+    compileSdkMinor = 1
 
     defaultConfig {
         applicationId = "de.wohlfrom.didyouget"
