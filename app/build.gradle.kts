@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlinx.kover")
     id("com.apollographql.apollo") version "4.4.3"
-    id("androidx.navigation.safeargs.kotlin") version "2.9.7"
+    id("androidx.navigation.safeargs.kotlin") version "2.9.8"
 }
 
 android {
@@ -56,9 +56,9 @@ dependencies {
 
     implementation("androidx.security:security-crypto-ktx:1.1.0")
 
-    implementation("androidx.navigation:navigation-fragment-ktx:2.9.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.9.7")
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.9.7")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.8")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.8")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.9.8")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.4.0")
 
@@ -67,7 +67,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
 
-    implementation("com.google.code.gson:gson:2.13.2")
+    implementation("com.google.code.gson:gson:2.14.0")
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("io.mockk:mockk:1.14.9")
@@ -78,7 +78,7 @@ dependencies {
     testImplementation("androidx.test.ext:truth:1.7.0")
     testImplementation("androidx.test.espresso:espresso-core:3.7.0")
     testImplementation("androidx.test.espresso:espresso-contrib:3.7.0")
-    testImplementation("androidx.navigation:navigation-testing:2.9.7")
+    testImplementation("androidx.navigation:navigation-testing:2.9.8")
 
     // Those need to be included together to be working
     testImplementation("androidx.fragment:fragment-testing:1.8.9")
