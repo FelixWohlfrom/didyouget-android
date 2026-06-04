@@ -83,4 +83,6 @@ dependencies {
     // Those need to be included together to be working
     testImplementation("androidx.fragment:fragment-testing:1.8.9")
     debugImplementation("androidx.fragment:fragment-testing-manifest:1.8.9")
+
+    androidTestImplementation("androidx.test.ext:junit:1.3.0")
 }
