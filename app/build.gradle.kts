@@ -55,8 +55,8 @@ dependencies {
     implementation("androidx.annotation:annotation:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.2")
 
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.11.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.11.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.1")
 
     implementation("androidx.security:security-crypto-ktx:1.1.0")
 
@@ -71,11 +71,11 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0")
 
-    implementation("com.google.code.gson:gson:2.14.0")
+    implementation("com.google.code.gson:gson:2.15.0")
 
     testImplementation("junit:junit:4.13.2")
-    testImplementation("io.mockk:mockk:1.14.11")
-    testImplementation("org.robolectric:robolectric:4.17")
+    testImplementation("io.mockk:mockk:1.14.12")
+    testImplementation("org.robolectric:robolectric:4.18.1")
     testImplementation("androidx.test:runner:1.7.0")
     testImplementation("androidx.test.ext:junit:1.3.0")
     testImplementation("androidx.test.ext:junit-ktx:1.3.0")
